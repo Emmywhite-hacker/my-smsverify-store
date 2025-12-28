@@ -3,70 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emmy Whyte | Luxury Verification Hub</title>
-<link rel="icon" href="assets/logo.png" type="image/png">
+<title>Emmy Whyte Digital Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/logo.png" type="image/png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <canvas id="bg-canvas"></canvas>
 
 <header>
-  <div class="brand">
-    <img src="assets/logo.png" alt="Logo">
-    <div>
-      <h1>Emmy Whyte</h1>
-      <small>Luxury Digital Verification</small>
-    </div>
-  </div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
-  <nav class="nav-menu" id="navMenu">
-    <a href="marketplace.html">Marketplace</a>
-    <a href="#sms">SMS Verify</a>
-    <a href="login.html">Login</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="admin.html">Admin</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <img src="images/logo.png" alt="Emmy Whyte Logo">
+    <div class="banner-name">Emmy Whyte</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav class="nav-menu" id="navMenu">
+        <a href="#whatsapp">WhatsApp</a>
+        <a href="#tiktok">TikTok</a>
+        <a href="#facebook">Facebook</a>
+        <a href="#signup">Sign-Up</a>
+        <a href="#about">About Me</a>
+        <a href="#contact">Contact</a>
+    </nav>
 </header>
 
-<section class="hero">
-  <h1>Secure SMS & Social Media Verification</h1>
-  <p>Premium digital accounts with luxury service. Preview and order safely.</p>
-  <a class="buttons" href="marketplace.html">Go to Marketplace</a>
-  <a class="buttons" href="#sms">Get SMS Verification</a>
+<!-- Products Section -->
+<section id="whatsapp" class="card-section">
+<h2>📱 WhatsApp Numbers – Europe & Americas</h2>
+<div class="card">
+<img src="images/whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
+<label for="whatsapp-country">Select Country:</label>
+<select id="whatsapp-country">
+  <!-- Countries same as before -->
+</select>
+<p>💰 Price may vary – ask always</p>
+<a href="#" id="whatsapp-contact" class="buttons">Contact Me</a>
+</div>
 </section>
 
-<section id="sms">
-  <h2>SMS Verification Demo</h2>
-  <div class="product">
-    <img src="assets/whatsapp-icon.png" alt="SMS Icon">
-    <select>
-      <option>Select Country</option>
-      <option>United States</option>
-      <option>United Kingdom</option>
-      <option>Canada</option>
-      <option>Germany</option>
-      <option>France</option>
-    </select>
-    <button onclick="startSMS()">Get Virtual Number</button>
-    <div id="smsBox" class="hidden">
-      <div class="loader"></div>
-      <div id="inbox"></div>
-      <p style="color:gold;font-size:13px;">Demo only</p>
-    </div>
-  </div>
+<section id="tiktok" class="card-section">
+<h2>🎵 TikTok Accounts – Europe & Americas</h2>
+<div class="card">
+<img src="images/tiktok.png" alt="TikTok Account" class="icon">
+<label for="tiktok-country">Select Country:</label>
+<select id="tiktok-country"></select>
+<label for="tiktok-years">Select Years:</label>
+<select id="tiktok-years">
+  <option value="2020-2025">2020-2025</option>
+  <option value="2021-2025">2021-2025</option>
+  <option value="2022-2025">2022-2025</option>
+  <option value="2023-2025">2023-2025</option>
+  <option value="2024-2025">2024-2025</option>
+</select>
+<p>💰 Price varies with years & country (max $11)</p>
+<a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
+</div>
 </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">
-    WhatsApp: <a class="buttons" href="https://wa.me/2347078312023">Chat Now</a>
-  </p>
+<section id="facebook" class="card-section">
+<h2>📘 Facebook Accounts – Europe & Americas</h2>
+<div class="card">
+<img src="images/facebook.png" alt="Facebook Account" class="icon">
+<label for="facebook-country">Select Country:</label>
+<select id="facebook-country"></select>
+<label for="facebook-years">Select Years:</label>
+<select id="facebook-years">
+  <option value="2020-2025">2020-2025</option>
+  <option value="2021-2025">2021-2025</option>
+  <option value="2022-2025">2022-2025</option>
+  <option value="2023-2025">2023-2025</option>
+  <option value="2024-2025">2024-2025</option>
+</select>
+<p>💰 Price varies with years & country (max $11)</p>
+<a href="#" id="facebook-contact" class="buttons">Contact Me</a>
+</div>
+</section>
+
+<!-- Sign-Up with SMS verification style -->
+<section id="signup" class="card-section">
+<h2>📝 Sign-Up</h2>
+<div class="card">
+<p>Secure sign-up coming soon! You will get a verification code like ebucesmsverify.ng:</p>
+<form id="signup-form">
+<label for="phone">Enter Phone Number:</label>
+<input type="tel" id="phone" placeholder="+234..." required>
+<button type="submit" class="buttons">Send Verification Code</button>
+</form>
+</div>
+</section>
+
+<section id="about" class="card-section">
+<h2>💖 About Me</h2>
+<div class="card">
+<p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. HAPPILY IN A RELATIONSHIP WITH ADESEWA 🤭🌹</p>
+</div>
+</section>
+
+<section id="contact" class="card-section">
+<h2>📩 Contact</h2>
+<div class="card">
+<p>WhatsApp: <a href="https://wa.me/2347078312023" class="buttons">Chat Now</a></p>
+<p>Email: <a href="mailto:omodaratanemmanuel5@gmail.com" class="buttons">Send Email</a></p>
+</div>
 </section>
 
 <footer>
-  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+<p>© 2025 Emmy Whyte Digital Store</p>
 </footer>
 
 <script src="js/main.js"></script>
