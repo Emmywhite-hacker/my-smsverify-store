@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Emmy Whyte</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="login.html">Login</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="checkout-section">
+  <h1>Checkout</h1>
+  <div id="cartList" class="account-list"></div>
+  <h3 id="totalPrice">Total: $0</h3>
+  <button class="buttons" id="payBtn">Pay Now (Demo)</button>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/marketplace.js"></script>
+<script>
+const cartKey = 'demoCart';
+
+// Simulate adding account to cart via localStorage
+// For demo purposes, if nothing in cart, add first account
+if(!localStorage.getItem(cartKey)){
+  localStorage.setItem(cartKey, JSON.stringify([accounts[0]]));
+}
+
+function renderCart(){
+  const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  const cartList = document.getElementById('cartList');
+  cartList.innerHTML = '';
+  let total = 0;
+  cart.forEach(acc=>{
+    const card = document.createElement('div');
+    card.className = 'account-card';
+    card.innerHTML = `
+      <img src="${acc.img}" alt="${acc.platform}">
+      <h3>${acc.name}</h3>
+      <p>Platform: ${acc.platform}</p>
+      <p>Country: ${acc.country}</p>
+      <p>Followers: ${acc.followers}</p>
+      <p>Price: ${acc.price}</p>
+    `;
+    cartList.appendChild(card);
+    total += parseFloat(acc.price.replace('$','')) || 0;
+  });
+  document.getElementById('totalPrice').textContent = `Total: $${total}`;
+}
+
+renderCart();
+
+// Demo pay button
+document.getElementById('payBtn').addEventListener('click', ()=>{
+  alert('Demo purchase complete! Thank you for using Emmy Whyte Luxury Services.');
+  localStorage.removeItem(cartKey);
+  renderCart();
+});
+</script>
+</body>
+</html>
