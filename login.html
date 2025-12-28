@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Register | Emmy Whyte</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+</header>
+
+<section class="login-section">
+  <div class="product">
+    <h2>Login</h2>
+    <input type="text" id="loginUser" placeholder="Username">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button class="buttons" id="loginBtn">Login</button>
+
+    <h2 style="margin-top:30px;">Register</h2>
+    <input type="text" id="regUser" placeholder="Username">
+    <input type="password" id="regPass" placeholder="Password">
+    <button class="buttons" id="regBtn">Register</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const usersKey = 'emmyUsers';
+
+// Register user
+document.getElementById('regBtn').addEventListener('click', ()=>{
+  const username = document.getElementById('regUser').value.trim();
+  const password = document.getElementById('regPass').value.trim();
+  if(!username || !password){ alert('Fill all fields'); return; }
+  let users = JSON.parse(localStorage.getItem(usersKey)) || [];
+  if(users.find(u=>u.username===username)){ alert('User exists!'); return; }
+  users.push({username,password,balance:20,orders:[]});
+  localStorage.setItem(usersKey, JSON.stringify(users));
+  alert('Registered! You can now login.');
+});
+
+// Login user
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+  const username = document.getElementById('loginUser').value.trim();
+  const password = document.getElementById('loginPass').value.trim();
+  let users = JSON.parse(localStorage.getItem(usersKey)) || [];
+  const user = users.find(u=>u.username===username && u.password===password);
+  if(user){
+    localStorage.setItem('emmyLogged', JSON.stringify(user));
+    alert('Login successful!');
+    window.location.href = 'dashboard.html';
+  }else{
+    alert('Invalid credentials!');
+  }
+});
+</script>
+</body>
+</html>
