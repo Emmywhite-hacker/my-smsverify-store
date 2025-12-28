@@ -1,0 +1,56 @@
+.filters {
+  max-width: 1000px;
+  margin: 20px auto;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filters select, .filters input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  min-width: 150px;
+}
+
+.account-list {
+  max-width: 1000px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.account-card {
+  background: linear-gradient(145deg, #0b0b0b, #151515);
+  border: 1px solid gold;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.account-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 20px gold, 0 0 40px #fff2a8;
+}
+
+.account-card img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.account-card h3 {
+  margin: 10px 0 5px;
+  color: gold;
+}
+
+.account-card p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+.account-card .buttons {
+  margin-top: 10px;
+}
