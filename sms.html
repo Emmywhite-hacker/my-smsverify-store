@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Verify | Emmy Whyte</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="sms.html">SMS Verify</a>
+  </nav>
+</header>
+
+<section class="sms-section">
+  <h1>SMS Verification</h1>
+  <label for="smsCountry">Select Country:</label>
+  <select id="smsCountry">
+    <option value="NG">Nigeria</option>
+    <option value="US">United States</option>
+    <option value="UK">United Kingdom</option>
+    <option value="DE">Germany</option>
+    <option value="FR">France</option>
+  </select>
+
+  <label for="smsService">Select Service:</label>
+  <select id="smsService">
+    <option value="whatsapp">WhatsApp</option>
+    <option value="facebook">Facebook</option>
+    <option value="tiktok">TikTok</option>
+    <option value="instagram">Instagram</option>
+  </select>
+
+  <button class="buttons" id="requestNumberBtn">Get Number</button>
+  <p id="smsResult"></p>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script>
+document.getElementById('requestNumberBtn').addEventListener('click', async ()=>{
+  const country = document.getElementById('smsCountry').value;
+  const service = document.getElementById('smsService').value;
+  const result = document.getElementById('smsResult');
+  result.textContent = 'Fetching number...';
+
+  try {
+    // Replace URL & API_KEY with your EbuceSMSVerify info
+    const res = await fetch(`https://www.ebucesmsverify.ng/api/get_number?country=${country}&service=${service}&apikey=YOUR_API_KEY`);
+    const data = await res.json();
+
+    if(data.number){
+      result.innerHTML = `✅ Number: <b>${data.number}</b><br>SMS Code: <b>${data.code || 'Pending...'}</b>`;
+    } else {
+      result.textContent = 'Failed to fetch number. Try again.';
+    }
+  } catch(err){
+    result.textContent = 'Error connecting to SMS API.';
+  }
+});
+</script>
+</body>
+</html>
