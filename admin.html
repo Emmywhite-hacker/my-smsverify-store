@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | Emmy Whyte</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="login.html" id="logoutLink">Logout</a>
+  </nav>
+</header>
+
+<section class="admin-section">
+  <h1>Admin Panel</h1>
+  <div class="product">
+    <h2>Total Users: <span id="totalUsers">0</span></h2>
+    <h2>Total Balance: $<span id="totalBalance">0</span></h2>
+    <h3>All Users:</h3>
+    <ul id="userList"></ul>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/marketplace.js"></script>
+<script>
+let users = JSON.parse(localStorage.getItem('emmyUsers')) || [];
+document.getElementById('totalUsers').textContent = users.length;
+
+let totalBalance = users.reduce((sum,u)=>sum + u.balance, 0);
+document.getElementById('totalBalance').textContent = totalBalance;
+
+const userList = document.getElementById('userList');
+if(users.length===0){
+  userList.innerHTML = '<li>No users registered yet</li>';
+} else {
+  users.forEach((u, index)=>{
+    const li = document.createElement('li');
+    li.innerHTML = `${u.username} - Balance: $${u.balance} - Orders: ${u.orders.length} 
+      <button onclick="deleteUser(${index})" style="margin-left:10px;">Delete</button>`;
+    userList.appendChild(li);
+  });
+});
+
+// Delete user demo
+function deleteUser(index){
+  if(confirm('Are you sure you want to delete this user?')){
+    users.splice(index,1);
+    localStorage.setItem('emmyUsers', JSON.stringify(users));
+    location.reload();
+  }
+}
+
+// Logout
+document.getElementById('logoutLink').addEventListener('click', ()=>{
+  localStorage.removeItem('emmyLogged');
+});
+</script>
+</body>
+</html>
