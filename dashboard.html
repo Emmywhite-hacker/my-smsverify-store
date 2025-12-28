@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Emmy Whyte</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="login.html" id="logoutLink">Logout</a>
+  </nav>
+</header>
+
+<section class="dashboard-section">
+  <h1>Dashboard</h1>
+  <div class="product">
+    <h2>Welcome, <span id="username"></span></h2>
+    <p>Balance: $<span id="balance"></span></p>
+    <button class="buttons" id="addFundsBtn">Add $10 (Demo)</button>
+    <h3>Orders:</h3>
+    <ul id="orderList"></ul>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/marketplace.js"></script>
+<script>
+let user = JSON.parse(localStorage.getItem('emmyLogged'));
+if(!user){ 
+  alert('Please login first');
+  window.location.href = 'login.html';
+} else {
+  document.getElementById('username').textContent = user.username;
+  document.getElementById('balance').textContent = user.balance;
+  const orderList = document.getElementById('orderList');
+  if(user.orders.length===0){
+    orderList.innerHTML = '<li>No orders yet</li>';
+  } else {
+    orderList.innerHTML = user.orders.map(o=>`<li>${o}</li>`).join('');
+  }
+}
+
+// Add demo funds
+document.getElementById('addFundsBtn').addEventListener('click', ()=>{
+  user.balance += 10;
+  document.getElementById('balance').textContent = user.balance;
+  saveUser();
+  alert('Added $10 to your balance (Demo)');
+});
+
+// Logout
+document.getElementById('logoutLink').addEventListener('click', ()=>{
+  localStorage.removeItem('emmyLogged');
+});
+
+// Save user to localStorage
+function saveUser(){
+  let users = JSON.parse(localStorage.getItem('emmyUsers')) || [];
+  const index = users.findIndex(u=>u.username===user.username);
+  if(index!==-1){ users[index] = user; localStorage.setItem('emmyUsers', JSON.stringify(users)); }
+  localStorage.setItem('emmyLogged', JSON.stringify(user));
+}
+</script>
+</body>
+</html>
