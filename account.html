@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Preview | Emmy Whyte</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="login.html">Login</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="account-preview">
+  <div class="product" id="accountBox">
+    <img id="accImg" src="" alt="Account Icon">
+    <h2 id="accName"></h2>
+    <p id="accPlatform"></p>
+    <p id="accCountry"></p>
+    <p id="accFollowers"></p>
+    <p id="accPrice"></p>
+    <button class="buttons" id="orderBtn">Add to Cart / Checkout</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/marketplace.js"></script>
+<script>
+// Read account name from URL
+const urlParams = new URLSearchParams(window.location.search);
+const accName = urlParams.get('name');
+
+// Find account from the sample data
+const account = accounts.find(a => a.name === accName) || accounts[0]; // fallback
+
+// Populate the account preview
+document.getElementById('accImg').src = account.img;
+document.getElementById('accName').textContent = account.name;
+document.getElementById('accPlatform').textContent = "Platform: " + account.platform;
+document.getElementById('accCountry').textContent = "Country: " + account.country;
+document.getElementById('accFollowers').textContent = "Followers: " + account.followers;
+document.getElementById('accPrice').textContent = "Price: " + account.price;
+
+// Order button demo
+document.getElementById('orderBtn').addEventListener('click', ()=>{
+  alert(`Added ${account.name} to demo cart. Proceed to checkout!`);
+});
+</script>
+</body>
+</html>
