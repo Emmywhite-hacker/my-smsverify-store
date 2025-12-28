@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmy Whyte | Luxury Verification Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.png" type="image/png"><style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(145deg, #000, #111);
+  border-bottom: 1px solid gold;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px gold;
+}
+
+.brand h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin: 0;
+  color: gold;
+}
+
+.brand small {
+  color: #bbb;
+  letter-spacing: 1px;
+}
+
+.menu-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.nav-menu {
+  position: absolute;
+  right: 30px;
+  top: 85px;
+  background: #0c0c0c;
+  border: 1px solid gold;
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nav-menu a {
+  padding: 14px 25px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover {
+  background: gold;
+  color: black;
+}
+
+section {
+  max-width: 1000px;
+  margin: 70px auto;
+  padding: 50px 30px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #0b0b0b, #151515);
+  box-shadow: 0 0 40px rgba(255,215,0,0.15);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  color: gold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product {
+  background: #000;
+  border: 1px solid gold;
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+}
+
+.product img {
+  width: 60px;
+  margin-bottom: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px 0;
+}
+
+.buttons {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, gold, #fff2a8);
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.buttons:hover {
+  transform: scale(1.07);
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+  border-top: 1px solid #222;
+}
+</style></head><body>
+<canvas id="bg-canvas"></canvas><header>
+  <div class="brand">
+    <img src="logo.png" alt="Logo">
+    <div>
+      <h1>Emmy Whyte</h1>
+      <small>Luxury Digital Verification</small>
+    </div>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="#whatsapp">WhatsApp</a>
+    <a href="#tiktok">TikTok</a>
+    <a href="#facebook">Facebook</a>
+    <a href="#signup">Sign Up</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header><section id="whatsapp">
+  <h2>WhatsApp Verification</h2>
+  <div class="product">
+    <img src="whatsapp-icon.png">
+    <select><option>Select Country</option></select>
+    <a class="buttons" href="#">Order Now</a>
+  </div>
+</section><section id="tiktok">
+  <h2>TikTok Accounts</h2>
+  <div class="product">
+    <img src="tiktok.png">
+    <select><option>Select Country</option></select>
+    <a class="buttons" href="#">Order Now</a>
+  </div>
+</section><section id="facebook">
+  <h2>Facebook Accounts</h2>
+  <div class="product">
+    <img src="facebook.png">
+    <select><option>Select Country</option></select>
+    <a class="buttons" href="#">Order Now</a>
+  </div>
+</section><section id="about">
+  <h2>About Us</h2>
+  <p style="text-align:center; max-width:700px; margin:auto;">We provide premium verified digital accounts with trust, security and speed. Designed for elite users who want reliability.</p>
+</section><section id="contact">
+  <h2>Contact</h2>
+  <p style="text-align:center;">WhatsApp: <a class="buttons" href="https://wa.me/2347078312023">Chat Now</a></p>
+</section><footer>
+  <p>© 2025 Emmy Whyte Luxury Digital Services</p>
+</footer><script>
+function toggleMenu(){
+  const menu = document.getElementById('navMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) sec.classList.add('visible');
+  });
+});
+
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+function resize(){ w = canvas.width = innerWidth; h = canvas.height = innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+const particles = Array.from({length:100}, () => ({
+  x: Math.random()*w,
+  y: Math.random()*h,
+  vx: (Math.random()-0.5)*0.6,
+  vy: (Math.random()-0.5)*0.6
+}));
+
+function animate(){
+  ctx.fillStyle = 'rgba(0,0,0,0.15)';
+  ctx.fillRect(0,0,w,h);
+  ctx.fillStyle = 'gold';
+
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0||p.x>w) p.vx*=-1;
+    if(p.y<0||p.y>h) p.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script></body>
+</html>
