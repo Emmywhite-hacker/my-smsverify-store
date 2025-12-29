@@ -2,240 +2,187 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emmy Whyte Digital Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="logo.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body { margin:0; font-family:'Montserrat',sans-serif; color:white; overflow-x:hidden; background:#0a0a0a; }
-#bg-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #0a0a0a;
+  color: white;
+}
 
-/* Header */
-header { position:relative; z-index:2; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.6); border-bottom:2px solid #0ff; flex-wrap:wrap; }
-header img { width:80px; border-radius:50%; }
-.banner-name { font-size:2rem; font-weight:bold; color:#0ff; text-shadow:0 0 10px #0ff,0 0 20px #34eb86; margin-left:15px; }
+header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg,#00fff0,#00ff99);
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
 
-.menu-btn { font-size:2rem; cursor:pointer; user-select:none; }
-.nav-menu { position:absolute; top:70px; right:30px; background:rgba(0,0,0,0.85); border-radius:15px; display:none; flex-direction:column; padding:10px 0; z-index:3; }
-.nav-menu a { padding:12px 25px; text-decoration:none; color:white; font-weight:bold; display:block; transition:all 0.3s ease; }
-.nav-menu a:hover { background:rgba(0,255,204,0.2); border-radius:10px; color:#0ff; }
+button {
+  background: linear-gradient(90deg,#00fff0,#00ff99);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-/* Sections */
-section { opacity:0; transform:translateY(30px); padding:60px 20px; margin:20px auto; max-width:900px; background:rgba(0,0,0,0.5); border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); position:relative; overflow:hidden; transition:all 1s ease; }
-section.visible { opacity:1; transform:translateY(0); }
+button:hover { transform: scale(1.05); }
 
-.product { background:rgba(0,0,0,0.85); border-radius:20px; padding:20px; margin:20px auto; max-width:300px; position:relative; transition:transform 0.3s, box-shadow 0.3s; border:2px solid rgba(255,255,255,0.1);}
-.product:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 0 20px #0ff,0 0 40px #34eb86,0 0 60px #ffd700; }
-.product img.icon { width:50px; margin-bottom:10px; transition:0.3s; }
-.product img.icon:hover { transform:scale(1.3); filter:drop-shadow(0 0 10px #ffd700); }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
 
-input { width:100%; padding:8px 12px; border-radius:10px; border:none; margin-bottom:10px; }
+.card {
+  background: #111;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 0 15px #00fff055;
+  position: relative;
+}
 
-.buttons { background:linear-gradient(270deg,#0ff,#34eb86,#ffd700); background-size:600% 600%; animation:gradientBG 5s ease infinite; color:white; font-weight:bold; padding:10px 20px; border-radius:25px; display:inline-block; transition:transform 0.3s; text-decoration:none; cursor:pointer; }
-.buttons:hover { transform:scale(1.05); }
-@keyframes gradientBG { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+.card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
 
-footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:30px; }
+.sold {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: red;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+}
 
-label { display:block; margin:10px 0 5px; font-weight:bold; color:white; }
-select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; margin-bottom:15px; }
+.admin-panel {
+  background: #111;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  display: none;
+}
 
-@media(max-width:768px){ .nav-menu{ top:60px; right:10px; width:200px; } }
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+}
+
+.actions button {
+  margin-right: 10px;
+}
 </style>
 </head>
+
 <body>
-<canvas id="bg-canvas"></canvas>
 
-<header>
-<img src="logo.png" alt="Emmy Whyte Logo">
-<div class="banner-name">Emmy Whyte</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<nav class="nav-menu" id="navMenu">
-  <a href="#whatsapp">WhatsApp</a>
-  <a href="#tiktok">TikTok</a>
-  <a href="#facebook">Facebook</a>
-  <a href="#sms-verify">SMS Verify</a>
-  <a href="#signup">Sign-Up</a>
-  <a href="#about">About Me</a>
-  <a href="#contact">Contact</a>
-</nav>
-</header>
+<header>Emmy Whyte Digital Store</header>
 
-<!-- WhatsApp Section -->
-<section id="whatsapp">
-<h2>📱 WhatsApp Numbers – Europe & Americas</h2>
-<div class="product">
-<img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
-<label for="whatsapp-country">Select Country:</label>
-<select id="whatsapp-country">
-  <option value="US">United States</option>
-  <option value="GB">United Kingdom</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
-</select>
-<p>💰 Price may vary – ask always</p>
-<a href="#" id="whatsapp-contact" class="buttons">Contact Me</a>
+<div class="container">
+
+<button onclick="adminLogin()">🔒 Admin Mode</button>
+
+<div class="admin-panel" id="adminPanel">
+  <h3>Add New Account</h3>
+  <input type="text" id="title" placeholder="Account title (e.g TikTok USA 2023)">
+  <textarea id="desc" placeholder="Description"></textarea>
+  <input type="file" id="image">
+  <button onclick="addAccount()">Add Account</button>
 </div>
-</section>
 
-<!-- TikTok Section -->
-<section id="tiktok">
-<h2>🎵 TikTok Accounts – Europe & Americas</h2>
-<div class="product">
-<img src="tiktok.png" alt="TikTok Account" class="icon">
-<label for="tiktok-country">Select Country:</label>
-<select id="tiktok-country">
-  <option value="US">United States</option>
-  <option value="GB">United Kingdom</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
-</select>
-<label for="tiktok-years">Select Years:</label>
-<select id="tiktok-years">
-  <option value="2020-2025">2020-2025</option>
-  <option value="2021-2025">2021-2025</option>
-  <option value="2022-2025">2022-2025</option>
-  <option value="2023-2025">2023-2025</option>
-</select>
-<p>💰 Price varies with years & country (max $11)</p>
-<a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
+<div id="cards"></div>
+
 </div>
-</section>
-
-<!-- Facebook Section -->
-<section id="facebook">
-<h2>📘 Facebook Accounts – Europe & Americas</h2>
-<div class="product">
-<img src="facebook.png" alt="Facebook Account" class="icon">
-<label for="facebook-country">Select Country:</label>
-<select id="facebook-country">
-  <option value="US">United States</option>
-  <option value="GB">United Kingdom</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
-</select>
-<label for="facebook-years">Select Years:</label>
-<select id="facebook-years">
-  <option value="2020-2025">2020-2025</option>
-  <option value="2021-2025">2021-2025</option>
-  <option value="2022-2025">2022-2025</option>
-  <option value="2023-2025">2023-2025</option>
-  <option value="2024-2025">2024-2025</option>
-</select>
-<p>💰 Price varies with years & country (max $11)</p>
-<a href="#" id="facebook-contact" class="buttons">Contact Me</a>
-</div>
-</section>
-
-<!-- SMS Verification Section -->
-<section id="sms-verify">
-<h2>📲 SMS Verification</h2>
-<div class="product">
-<img src="sms-icon.png" alt="SMS Verification" class="icon">
-<label for="sms-country">Select Country:</label>
-<select id="sms-country">
-  <option value="US">United States</option>
-  <option value="GB">United Kingdom</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
-</select>
-<label for="sms-phone">Enter Phone Number:</label>
-<input type="text" id="sms-phone" placeholder="+1234567890">
-<button id="send-sms" class="buttons">Send SMS Code</button>
-
-<div id="sms-code-section" style="display:none; margin-top:15px;">
-  <label for="sms-code">Enter Received Code:</label>
-  <input type="text" id="sms-code" placeholder="123456">
-  <button id="verify-sms" class="buttons">Verify Code</button>
-</div>
-<p id="sms-message" style="margin-top:10px;"></p>
-</div>
-</section>
-
-<!-- Sign-Up Section -->
-<section id="signup">
-<h2>📝 Sign-Up</h2>
-<p>Coming soon: Sign-Up functionality with secure login!</p>
-</section>
-
-<!-- About -->
-<section id="about">
-<h2>💖 About Me</h2>
-<p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. HAPPILY IN A RELATIONSHIP WITH ADESEWA 🤭🌹</p>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-<h2>📩 Contact</h2>
-<p>WhatsApp: <a href="https://wa.me/2347078312023" class="buttons">Chat Now</a></p>
-<p>Email: <a href="mailto:omodaratanemmanuel5@gmail.com" class="buttons">Send Email</a></p>
-</section>
-
-<footer>
-<p>© 2025 Emmy Whyte Digital Store</p>
-</footer>
 
 <script>
-// ===== Menu toggle =====
-function toggleMenu(){ const menu=document.getElementById("navMenu"); menu.style.display=menu.style.display==="flex"?"none":"flex"; }
-document.querySelectorAll('.nav-menu a').forEach(link=>{ link.addEventListener('click',()=>{document.getElementById("navMenu").style.display="none";}); });
+let isAdmin = false;
+let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-// ===== Contact buttons =====
-document.getElementById("whatsapp-contact").addEventListener("click",()=>{
-  const country=document.getElementById("whatsapp-country").value;
-  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a WhatsApp number from ${country}`,"_blank");
-});
-document.getElementById("tiktok-contact").addEventListener("click",()=>{
-  const country=document.getElementById("tiktok-country").value;
-  const years=document.getElementById("tiktok-years").value;
-  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a TikTok account from ${country} for years ${years}`,"_blank");
-});
-document.getElementById("facebook-contact").addEventListener("click",()=>{
-  const country=document.getElementById("facebook-country").value;
-  const years=document.getElementById("facebook-years").value;
-  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for years ${years}`,"_blank");
-});
+function adminLogin() {
+  const pass = prompt("Enter admin password:");
+  if (pass === "admin123") {
+    isAdmin = true;
+    document.getElementById("adminPanel").style.display = "block";
+    render();
+  } else {
+    alert("Wrong password");
+  }
+}
 
-// ===== Scroll reveal =====
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{ sections.forEach(sec=>{ const rect=sec.getBoundingClientRect(); if(rect.top<window.innerHeight-100){ sec.classList.add("visible"); } }); });
+function addAccount() {
+  const title = document.getElementById("title").value;
+  const desc = document.getElementById("desc").value;
+  const imgInput = document.getElementById("image");
 
-// ===== Particle background =====
-const canvas=document.getElementById("bg-canvas"); const ctx=canvas.getContext("2d");
-let w,h;
-function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
-window.addEventListener("resize",resize);
-resize();
-const particles=[];
-for(let i=0;i<120;i++){ particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*1.2,vy:(Math.random()-0.5)*1.2,size:2+Math.random()*2}); }
-function draw(){ ctx.fillStyle="rgba(0,0,0,0.05)"; ctx.fillRect(0,0,w,h); ctx.strokeStyle="rgba(0,255,204,0.2)";
-for(let i=0;i<particles.length;i++){ const p=particles[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fillStyle="#0ff"; ctx.fill();
-for(let j=i+1;j<particles.length;j++){ const p2=particles[j]; const dx=p.x-p2.x, dy=p.y-p2.y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<100){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.stroke(); } } } requestAnimationFrame(draw); }
-draw();
+  if (!title || !imgInput.files[0]) return alert("Fill all fields");
 
-// ===== SMS Verification Logic =====
-document.getElementById("send-sms").addEventListener("click", () => {
-    const country = document.getElementById("sms-country").value;
-    const phone = document.getElementById("sms-phone").value.trim();
-    if(!phone){ alert("Enter a valid phone number!"); return; }
-    document.getElementById("sms-message").innerText = `SMS code sent to ${country} ${phone}`;
-    document.getElementById("sms-code-section").style.display = "block";
-    window.smsCode = Math.floor(100000 + Math.random()*900000); 
-    console.log("DEBUG: SMS Code is", window.smsCode);
-});
-document.getElementById("verify-sms").addEventListener("click", () => {
-    const entered = document.getElementById("sms-code").value.trim();
-    if(entered == window.smsCode){
-        document.getElementById("sms-message").innerText = "✅ Phone number verified!";
-        document.getElementById("sms-code-section").style.display = "none";
-    } else {
-        document.getElementById("sms-message").innerText = "❌ Wrong code, try again.";
-    }
-});
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    accounts.push({
+      title,
+      desc,
+      img: e.target.result,
+      sold: false
+    });
+    save();
+  };
+  reader.readAsDataURL(imgInput.files[0]);
+}
+
+function save() {
+  localStorage.setItem("accounts", JSON.stringify(accounts));
+  render();
+}
+
+function toggleSold(i) {
+  accounts[i].sold = !accounts[i].sold;
+  save();
+}
+
+function removeItem(i) {
+  if(confirm("Delete this account?")){
+    accounts.splice(i,1);
+    save();
+  }
+}
+
+function render() {
+  const box = document.getElementById("cards");
+  box.innerHTML = "";
+
+  accounts.forEach((a,i)=>{
+    box.innerHTML += `
+      <div class="card">
+        ${a.sold ? '<div class="sold">SOLD</div>' : ''}
+        <img src="${a.img}">
+        <h3>${a.title}</h3>
+        <p>${a.desc}</p>
+
+        ${isAdmin ? `
+        <div class="actions">
+          <button onclick="toggleSold(${i})">Mark Sold</button>
+          <button onclick="removeItem(${i})">Delete</button>
+        </div>` : ''}
+      </div>
+    `;
+  });
+}
+
+render();
 </script>
+
 </body>
-    </html>
+</html>
